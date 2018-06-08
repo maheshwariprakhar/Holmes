@@ -38,6 +38,7 @@ public class EventFeedFragmentDetail extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActivity().setTitle("Event Details");
 //        if (getArguments() != null) {
 //            etitle = getArguments().getString("title");
 //            ehost = getArguments().getString("host");

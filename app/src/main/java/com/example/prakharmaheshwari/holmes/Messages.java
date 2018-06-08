@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 
@@ -97,12 +98,13 @@ public class Messages extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_messages, container, false);
         ListView messagelists = view.findViewById(R.id.messagelists);
         FloatingActionButton add_new_con = view.findViewById(R.id.add_new_conversation);
+        getActivity().setTitle("Messages");
 
         User = FirebaseAuth.getInstance().getCurrentUser();
         conversationList.clear();
@@ -185,7 +187,7 @@ public class Messages extends Fragment {
                 ForwardtoChat(o.get("contact_id"), o.get("contact_name"));
             }
         });
-        messagelists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*messagelists.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 HashMap<String, String> o = (HashMap<String, String>) parent.getItemAtPosition(position);
@@ -214,7 +216,7 @@ public class Messages extends Fragment {
                 });
                 return true;
             }
-        });
+        });*/
 
         Conversations.orderByChild("providerid")
                 .equalTo(User.getUid())
@@ -239,9 +241,19 @@ public class Messages extends Fragment {
                 hashMap.put("contact_avatar", hConversation.getReceiverid()+".png");
                 hashMap.put("unreadcount", (hConversation.getUnreadcount()==null)?"0":hConversation.getUnreadcount().toString());
                 //hashMap.put("unreadcount", hConversation.getUnreadcount().toString());
-                conversationList.add(hashMap);
+                Boolean flag = true;
+                for (HashMap<String, String> h : conversationList) {
+                    if (h.get("contact_id").equals(hConversation.getReceiverid())) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag) {
 
-                conversationAdapter.notifyDataSetChanged();
+                    conversationList.add(hashMap);
+
+                    conversationAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override

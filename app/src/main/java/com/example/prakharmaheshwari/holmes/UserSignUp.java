@@ -204,10 +204,7 @@ public class UserSignUp extends Fragment {
                                    // if(!imagePath.getText().equals(""))
 
                                     Intent intent = new Intent(getActivity(), EventFeedPage.class);
-                                 //   intent.putExtra("EXTRA_SESSION_ID", user.getDisplayName());
-                                //    intent.putExtra("EXTRA_Image", user.getDisplayName());
-
-
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK) ;
                                     startActivity(intent);
 
                                 } else {
