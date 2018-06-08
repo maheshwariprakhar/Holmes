@@ -85,6 +85,8 @@ public class Notification extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Notifications");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         ListView notificationlistview = view.findViewById(R.id.notificationlists);
