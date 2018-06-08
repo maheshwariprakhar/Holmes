@@ -167,7 +167,7 @@ public class EventFeedListFragment extends Fragment {
 
 
                     /*Check this*/
-                    if((ispartofGroup && isMember) || User.getDisplayName().equals(host)) {
+                    if((ispartofGroup || isMember) || User.getDisplayName().equals(host)) {
 
                     }
                     else
