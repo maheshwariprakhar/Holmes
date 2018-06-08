@@ -108,7 +108,7 @@ public class AddProduct extends AppCompatActivity {
                 String title = pTitle.getText().toString();
                 String price = pPrice.getText().toString();
                 String desc = pDescription.getText().toString();
-                HProducts hProducts = new HProducts(owner, title , price, desc);
+                HProducts hProducts = new HProducts(owner, title , price, desc, User.getUid());
                 String[] categories = pCategories.getText().toString().split(",");
                 HashMap<String, String> hpro = new HashMap<>();
                 pro.setValue(hProducts);

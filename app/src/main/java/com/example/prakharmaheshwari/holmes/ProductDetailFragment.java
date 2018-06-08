@@ -64,7 +64,6 @@ public class ProductDetailFragment extends Fragment {
         products = pDatabase.getReference("Products");
         pCategories = "";
         btnSold = (Button) rootView.findViewById(R.id.btn_Sold);
-        btnOwner = (Button) rootView.findViewById(R.id.btn_Owner);
 
         Glide.with(getContext())
                 .using(new FirebaseImageLoader())
@@ -75,7 +74,7 @@ public class ProductDetailFragment extends Fragment {
 
         products.child(p_key).addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(final DataSnapshot dataSnapshot, String s) {
                 Log.d("products1", dataSnapshot.getKey());
                 if(dataSnapshot.getKey().equals("title"))
                     pName = dataSnapshot.getValue(String.class);
@@ -107,27 +106,27 @@ public class ProductDetailFragment extends Fragment {
                 //p
 
                 if(pOwner!=null && pOwner=="You") {
-                    btnSold.setVisibility(View.VISIBLE);
-                    btnOwner.setVisibility(View.INVISIBLE);
+                    btnSold.setText("Mark as Sold");
+
                     btnSold.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             products.child(p_key).removeValue();
                         }
                     });
-                    btnOwner.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //Intent intent = new Intent(getActivity(), PublicUserProfile.class);
 
-                            //intent.putExtra("userId", )
-                            //startActivity(intent);
-                        }
-                    });
                 }
                 else if(pOwner!=null){
-                    btnSold.setVisibility(View.INVISIBLE);
-                    btnOwner.setVisibility(View.VISIBLE);
+                    btnSold.setText("Contact Owner");
+                    btnSold.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), PublicUserProfile.class);
+                            String uid = dataSnapshot.child("userId").getValue(String.class);
+                            intent.putExtra("userId", uid);
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 

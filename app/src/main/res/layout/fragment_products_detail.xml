@@ -136,17 +136,6 @@
             android:text="Mark as Sold"
             android:textColor="@android:color/white" />
 
-        <Button
-            android:id="@+id/btn_Owner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/btn_Sold"
-            android:layout_marginEnd="55dp"
-            android:background="@drawable/button_active"
-            android:padding="10dp"
-            android:text="Contact Owner"
-            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 
