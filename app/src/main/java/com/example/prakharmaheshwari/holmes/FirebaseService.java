@@ -443,13 +443,14 @@ public class FirebaseService extends Service {
 
             notificationManager.notify(id++, builder.build());
         }
+        Object timestamp = ServerValue.TIMESTAMP;
         ContentValues values = new ContentValues();
         values.put("type", Event_Type);
         values.put("Hid", eventid);
         values.put("Hname", eventname);
         values.put("Hostid", hostname);
         values.put("Hostname", hostname);
-        values.put("timestamp", ServerValue.TIMESTAMP.toString());
+        values.put("timestamp", timestamp.toString());
         SavetoDb(values);
     }
 
@@ -481,13 +482,14 @@ public class FirebaseService extends Service {
 
             notificationManager.notify(id++, builder.build());
         }
+        Object timestamp = ServerValue.TIMESTAMP;
         ContentValues values = new ContentValues();
         values.put("type", Product_Type);
         values.put("Hid", productid);
         values.put("Hname", productname);
         values.put("Hostid", owner);
         values.put("Hostname", owner);
-        values.put("timestamp", ServerValue.TIMESTAMP.toString());
+        values.put("timestamp", timestamp.toString());
         SavetoDb(values);
     }
 
