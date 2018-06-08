@@ -278,8 +278,8 @@ public class EventFeedPage extends AppCompatActivity
         transaction.replace(R.id.content_frame, fragmentmessages);
         transaction.addToBackStack(null);
         transaction.commit();
-        Toast.makeText(this, "Load message fragment!",
-                Toast.LENGTH_LONG).show();
+        /*Toast.makeText(this, "Load message fragment!",
+                Toast.LENGTH_LONG).show();*/
     }
     public void ForwardtoMessage(Boolean Forward_to_Message, String receiver_id, String receiver_name){
         //replace layout in content_frame to message layout
