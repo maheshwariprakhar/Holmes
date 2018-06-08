@@ -134,8 +134,8 @@ public class EventFeedListFragment extends Fragment {
 
                     }
                 }
-                else
-                    isMember = true;
+                //else
+                    //isMember = true;
                 Log.d("people1", Boolean.toString(isMember));
 
                 if(dataSnapshot.hasChild("groupsInvited")) {
@@ -149,8 +149,8 @@ public class EventFeedListFragment extends Fragment {
                         }
                     }
                 }
-                else
-                    ispartofGroup = true;
+                //else
+                //    ispartofGroup = true;
 
                 HEvents hPublicEvents = dataSnapshot.getValue(HEvents.class);
                 Log.d("Events", hPublicEvents.getPr_or_pu());
@@ -167,10 +167,11 @@ public class EventFeedListFragment extends Fragment {
 
 
                     /*Check this*/
-                    if((ispartofGroup || isMember) || User.getDisplayName().equals(host)) {
+
+                    if(!ispartofGroup && (!isMember && !User.getDisplayName().equals(host))) {
 
                     }
-                    else
+                    else 
                         return;
 
                     Log.d("Events2", Boolean.toString(isMember));
