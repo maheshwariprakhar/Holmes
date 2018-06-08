@@ -180,7 +180,7 @@ public class EventFeedPage extends AppCompatActivity
     @Override
     public void onResume() {
         super.onResume();
-        user = FirebaseAuth.getInstance().getCurrentUser();
+      //  user = FirebaseAuth.getInstance().getCurrentUser();
         drawerUsername.setText(user.getDisplayName());
 
     //    storagePrakhar = FirebaseStorage.getInstance();

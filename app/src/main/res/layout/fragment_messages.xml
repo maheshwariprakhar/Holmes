@@ -9,10 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
     </ListView>
-    <Button
+
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/add_new_conversation"
-        android:layout_gravity="bottom"
-        android:text="Add new Conversation"
+        android:backgroundTint="@color/textColor"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_my_icon"
+        android:layout_margin="16dp" />
 </FrameLayout>

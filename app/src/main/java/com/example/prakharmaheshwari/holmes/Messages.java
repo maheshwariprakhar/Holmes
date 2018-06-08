@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
@@ -101,7 +102,7 @@ public class Messages extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_messages, container, false);
         ListView messagelists = view.findViewById(R.id.messagelists);
-        Button add_new_con = view.findViewById(R.id.add_new_conversation);
+        FloatingActionButton add_new_con = view.findViewById(R.id.add_new_conversation);
 
         User = FirebaseAuth.getInstance().getCurrentUser();
         conversationList.clear();

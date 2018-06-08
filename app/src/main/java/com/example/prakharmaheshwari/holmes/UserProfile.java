@@ -202,6 +202,8 @@ public class UserProfile extends AppCompatActivity {
 
                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+                    FirebaseDatabase.getInstance().getReference().child("Users").child(user.getUid()).child("userName").setValue(newUserName);
+
                     UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
                             .setDisplayName(newUserName)
                             .build();
