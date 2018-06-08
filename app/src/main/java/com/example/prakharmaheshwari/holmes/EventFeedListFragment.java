@@ -171,7 +171,7 @@ public class EventFeedListFragment extends Fragment {
                     if(!ispartofGroup && (!isMember && !User.getDisplayName().equals(host))) {
 
                     }
-                    else 
+                    else
                         return;
 
                     Log.d("Events2", Boolean.toString(isMember));
