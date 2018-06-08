@@ -122,8 +122,8 @@ public class ProductDetailFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             Intent intent = new Intent(getActivity(), PublicUserProfile.class);
-                            String uid = dataSnapshot.child("userId").getValue(String.class);
-                            intent.putExtra("userId", uid);
+                            String uid = dataSnapshot.getValue(String.class);
+                            intent.putExtra("userID", uid);
                             startActivity(intent);
                         }
                     });
