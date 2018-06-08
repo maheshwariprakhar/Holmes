@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +35,9 @@ public class EventFeedListFragment extends Fragment {
     private FloatingActionButton addEvent;
     private ListView eventListView;
     private static FirebaseUser User;
+    private EventAdapter adapter;
+    private TextView text;
+    ArrayList<String> usersgroups;
 
     public EventFeedListFragment() {
         eventList=new ArrayList<>();
@@ -61,96 +65,121 @@ public class EventFeedListFragment extends Fragment {
         users = eUsers.getReference("Users");
         eGroups = FirebaseDatabase.getInstance();
         egroups = eGroups.getReference("Groups");
+        usersgroups  = new ArrayList<>();
         eventList = new ArrayList<>();
+        text = (TextView) rootView.findViewById(R.id.event_text);
         eventListView = (ListView) rootView.findViewById(R.id.eve_event_list);
 
-        final EventAdapter adapter=new EventAdapter(inflater.getContext(),R.layout.event_list_layout,eventList);
+        adapter =new EventAdapter(inflater.getContext(),R.layout.event_list_layout,eventList);
         eventListView.setAdapter(adapter);
+
+        users.child(User.getUid()).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                if(dataSnapshot.hasChild("groups")) {
+                    for (DataSnapshot it : dataSnapshot.child("groups").getChildren()) {
+                        usersgroups.add(it.getKey());
+                    }
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
 
 
         publicEvents.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (!dataSnapshot.exists())
+                if (!dataSnapshot.exists()) {
+                    text.setText("No upcoming events :(");
                     return;
+                }
 
                 boolean ispartofGroup = false, isMember=false;
-                final ArrayList<String> usersgroups = new ArrayList<>();
 
-                Log.d("people", Boolean.toString(dataSnapshot.hasChild("peopleInvited")));
+
+                //Log.d("people", Boolean.toString(dataSnapshot.hasChild("peopleInvited")));
 
                 if(dataSnapshot.hasChild("peopleInvited")) {
-                    DataSnapshot ds = dataSnapshot.child("peopleInvited");
-                    for(DataSnapshot dschild : ds.getChildren()) {
+                    Log.d("people", "here");
+                    for(DataSnapshot dschild : dataSnapshot.child("peopleInvited").getChildren()) {
                         String members[] = dschild.getKey().replaceAll(" ",",").split(",");
-                        Log.d("people", members[0]);
-                        if(members[0].equals(User.getDisplayName())) {
+                        Log.d("people", members[1]);
+                        members[1] = members[1].substring(1, members[1].length()-1);
+                        if(members[1].equals(User.getDisplayName())) {
                             isMember = true;
-                            Log.d("people", User.getDisplayName());
+                            Log.d("people1", User.getDisplayName());
                             break;
                         }
 
 
                     }
                 }
+                else
+                    isMember = true;
+                Log.d("people1", Boolean.toString(isMember));
 
                 if(dataSnapshot.hasChild("groupsInvited")) {
                     DataSnapshot ds = dataSnapshot.child("groupsInvited");
                     for(DataSnapshot dschild : ds.getChildren()) {
                         String groupname = dschild.getKey();
-                        users.child(User.getUid()).addChildEventListener(new ChildEventListener() {
-                            @Override
-                            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                                if(dataSnapshot.hasChild("groups")) {
-                                    for (DataSnapshot it : dataSnapshot.getChildren()) {
-                                        usersgroups.add(it.getKey());
-                                    }
-                                }
-                            }
 
-                            @Override
-                            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-                            }
-
-                            @Override
-                            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-                            }
-
-                            @Override
-                            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-                            }
-
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-
-                            }
-                        });
                         if(usersgroups.size()>0 && usersgroups.contains(groupname)) {
                             ispartofGroup = true;
                             break;
                         }
                     }
                 }
+                else
+                    ispartofGroup = true;
 
                 HEvents hPublicEvents = dataSnapshot.getValue(HEvents.class);
                 Log.d("Events", hPublicEvents.getPr_or_pu());
-                String host = dataSnapshot.child("host").getValue(String.class);
-                Log.d("Events", host);
+                String host = "";
+
+                host = dataSnapshot.child("host").getValue(String.class);
+                Log.d("Events1", host);
                 if(hPublicEvents.getPr_or_pu().equals("private")) {
                     //if I am not the host
-                    if(!User.getDisplayName().equals(host) && !(dataSnapshot.hasChild("groupsInvited") && ispartofGroup) && !(dataSnapshot.hasChild("peopleInvited") && isMember))
+
+                    Log.d("Events2", Boolean.toString(ispartofGroup));
+                    Log.d("Events2", Boolean.toString(isMember));
+                    //Log.d("Events2",User.getDisplayName().equals(host));
+
+
+                    /*Check this*/
+                    if((ispartofGroup && isMember) || User.getDisplayName().equals(host)) {
+
+                    }
+                    else
                         return;
 
+                    Log.d("Events2", Boolean.toString(isMember));
                     //if I am part of the group
 
                     //if I am invited personally
 
                 }
-                //Log.d("Events", hPublicEvents.getHost());
+                Log.d("Events", dataSnapshot.getKey());
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put("host", host);
                 hashMap.put("title", hPublicEvents.getTitle());
@@ -186,6 +215,8 @@ public class EventFeedListFragment extends Fragment {
 
             }
         });
+        if(adapter.isEmpty())
+                text.setText("No upcoming events :(");
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -249,7 +280,6 @@ public class EventFeedListFragment extends Fragment {
     public void onResume() {
         super.onResume();
         addEvent.setVisibility(View.VISIBLE);
-
 
 
     }

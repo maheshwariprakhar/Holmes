@@ -51,9 +51,6 @@ public class UserLogIn extends Fragment {
 // Inflate the layout for this fragment
         auth = FirebaseAuth.getInstance();
 
-        Intent intent = new Intent(getActivity(),EventFeedPage.class);
-
-
         logInBtn = (Button) view.findViewById(R.id.btn_LogIn);
         forgotPassword = (Button) view.findViewById(R.id.btn_forgotPassword);
         userEmail = (EditText) view.findViewById(R.id.editText_email);

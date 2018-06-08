@@ -104,6 +104,7 @@ public class Messages extends Fragment {
         View view = inflater.inflate(R.layout.fragment_messages, container, false);
         ListView messagelists = view.findViewById(R.id.messagelists);
         FloatingActionButton add_new_con = view.findViewById(R.id.add_new_conversation);
+        getActivity().setTitle("Messages");
 
         User = FirebaseAuth.getInstance().getCurrentUser();
         conversationList.clear();
