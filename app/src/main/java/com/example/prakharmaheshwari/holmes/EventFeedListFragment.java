@@ -215,8 +215,6 @@ public class EventFeedListFragment extends Fragment {
 
             }
         });
-        if(adapter.isEmpty())
-                text.setText("No upcoming events :(");
         eventListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

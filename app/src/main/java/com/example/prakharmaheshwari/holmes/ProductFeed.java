@@ -128,8 +128,6 @@ public class ProductFeed extends Fragment{
             }
         });
 
-        if(adapter.isEmpty())
-            text.setText("No products to show :(");
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

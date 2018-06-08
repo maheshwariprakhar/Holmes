@@ -2,6 +2,7 @@ package com.example.prakharmaheshwari.holmes;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -32,7 +33,7 @@ public class ProductDetailFragment extends Fragment {
     StorageReference avatars = imagesRef.child("Products");
     private DatabaseReference products;
     private FirebaseDatabase pDatabase;
-    private Button btnSold;
+    private Button btnSold, btnOwner;
 
     public ProductDetailFragment() {
 
@@ -62,11 +63,13 @@ public class ProductDetailFragment extends Fragment {
         products = pDatabase.getReference("Products");
         pCategories = "";
         btnSold = (Button) rootView.findViewById(R.id.btn_Sold);
+        btnOwner = (Button) rootView.findViewById(R.id.btn_Owner);
 
         Glide.with(getContext())
                 .using(new FirebaseImageLoader())
                 .load(avatars.child(p_key+".png"))
                 .into(eventImg);
+
 
 
         products.child(p_key).addChildEventListener(new ChildEventListener() {
@@ -104,15 +107,26 @@ public class ProductDetailFragment extends Fragment {
 
                 if(pOwner!=null && pOwner=="You") {
                     btnSold.setVisibility(View.VISIBLE);
+                    btnOwner.setVisibility(View.INVISIBLE);
                     btnSold.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             products.child(p_key).removeValue();
                         }
                     });
+                    btnOwner.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //Intent intent = new Intent(getActivity(), PublicUserProfile.class);
+
+                            //intent.putExtra("userId", )
+                            //startActivity(intent);
+                        }
+                    });
                 }
                 else if(pOwner!=null){
                     btnSold.setVisibility(View.INVISIBLE);
+                    btnOwner.setVisibility(View.VISIBLE);
                 }
             }
 
