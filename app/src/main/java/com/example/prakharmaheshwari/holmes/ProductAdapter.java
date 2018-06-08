@@ -84,7 +84,7 @@ public class ProductAdapter extends BaseAdapter{
 
 
         //include hosted by you
-        Log.d("host", User.getUid());
+        Log.d("hello", hashMap.get("owner"));
 
 
         product_title.setText(hashMap.get("title"));

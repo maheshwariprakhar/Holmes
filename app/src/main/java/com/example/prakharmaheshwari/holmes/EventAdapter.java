@@ -34,6 +34,7 @@ public class EventAdapter extends BaseAdapter{
     private DatabaseReference eUsers;
     private String uname;
     private static FirebaseUser User;
+    Boolean userGot;
     FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference imagesRef = storage.getReference();
     StorageReference avatars = imagesRef.child("Events");
@@ -84,20 +85,32 @@ public class EventAdapter extends BaseAdapter{
 
             //include hosted by you
             Log.d("host", User.getUid());
+
+            userGot = false;
+            uname="";
             eUsers.addChildEventListener(new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     if(!dataSnapshot.exists())
                         return;
 
-                    for(DataSnapshot ds: dataSnapshot.getChildren()) {
-                        //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(ds.getKey());
+                    //if(dataSnapshot.child("userName").equals(hashMap.get("p_key")))
 
-                        if(ds.getKey().equals("userName") && !User.getDisplayName().equals(hashMap.get("host")) && ds.getValue(String.class).equals(hashMap.get("host"))) {
+                    for(DataSnapshot ds: dataSnapshot.getChildren()) {
+                        //if(ds.getKey().equals(hashMap.get("p_key"))) {
+                            //DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child(ds.getKey());
+                            Log.d("new", ds.getKey());
+                            /*if (ds.child("userName").equals(hashMap.get("host"))) {
+                                uname = ds.child("firstName").getValue(String.class);
+                                Log.d("new", ds.getValue(String.class)+" hi");
+                                event_host.setText(event_host.getText() + " " + uname + " (" + hashMap.get("host") + ")");
+                            }
+                        //}
+                        /*if(ds.getKey().equals("firstName") && !User.getDisplayName().equals(hashMap.get("host")) && ds.getValue(String.class).equals(hashMap.get("host"))) {
                             uname = ds.getValue(String.class);
                             event_host.setText(event_host.getText()+" "+uname+" ("+hashMap.get("host")+")");
                             break;
-                        }
+                        }*/
 
                     }
 
@@ -126,8 +139,12 @@ public class EventAdapter extends BaseAdapter{
 
 
             event_title.setText(hashMap.get("title"));
-            if(User.getDisplayName().equals(hashMap.get("host")))
+            Log.d("Events1", hashMap.get("host")+" adapt");
+            String host1 = hashMap.get("host");
+            if(User.getDisplayName().equals(host1))
                 event_host.setText(event_host.getText()+" You");
+            else
+                event_host.setText(event_host.getText()+" "+host1);
             event_time.setText(hashMap.get("start_date")+", "+hashMap.get("start_time")+" - "+hashMap.get("end_date")+", "+hashMap.get("end_time"));
 
 

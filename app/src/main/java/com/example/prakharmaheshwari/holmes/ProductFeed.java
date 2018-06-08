@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -34,6 +35,7 @@ public class ProductFeed extends Fragment{
     private DatabaseReference products;
     private FirebaseDatabase pDatabase;
     private FirebaseUser User;
+    private TextView text;
 
 
     @Override
@@ -57,6 +59,7 @@ public class ProductFeed extends Fragment{
         User = FirebaseAuth.getInstance().getCurrentUser();
         products= pDatabase.getReference("Products");
         proList = (ListView) view.findViewById(R.id.product_list);
+        text = (TextView) view.findViewById(R.id.product_text);
         proArrayList = new ArrayList<>();
         final ProductAdapter adapter=new ProductAdapter(getContext(),R.layout.product_list_layout,proArrayList);
         proList.setAdapter(adapter);
@@ -67,8 +70,10 @@ public class ProductFeed extends Fragment{
         products.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-                if (!dataSnapshot.exists())
+                if (!dataSnapshot.exists()) {
+
                     return;
+                }
 
                     Log.d("products", dataSnapshot.getKey());
                     HProducts hProducts = dataSnapshot.getValue(HProducts.class);
@@ -123,6 +128,8 @@ public class ProductFeed extends Fragment{
             }
         });
 
+        if(adapter.isEmpty())
+            text.setText("No products to show :(");
         addProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

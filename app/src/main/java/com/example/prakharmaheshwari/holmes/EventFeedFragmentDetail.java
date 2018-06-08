@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -56,8 +57,12 @@ public class EventFeedFragmentDetail extends Fragment {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot d : dataSnapshot.getChildren()){
                     if(d.getKey().equals("title")) etitle = (String) d.getValue();
-                    if(d.getKey().equals( "host")) ehost = (String) d.getValue();
-                    if(d.getKey().equals("description") ) descr = (String) d.getValue();
+                    if(d.getKey().equals("host")) {
+                        ehost = d.getValue(String.class);
+                        if(ehost.equals(FirebaseAuth.getInstance().getCurrentUser().getDisplayName()))
+                            ehost = "You";
+                    }
+                    if(d.getKey().equals("description") ) descr =  d.getValue(String.class);
                     if(d.getKey().equals("pr_or_pu")) pr_or_pu = (String) d.getValue();
                     if(d.getKey().equals("location")) location = (String) d.getValue();
                     if(d.getKey().equals("start_date")){  startDate = (String) d.getValue();}

@@ -116,6 +116,16 @@
                     android:layout_margin="10dp" />
             </TableRow>
         </TableLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pro_detail_lay"
+            android:id="@+id/btn_Sold"
+            android:background="@drawable/button_active"
+            android:text="Mark as Sold"
+            android:layout_margin="10dp"
+            android:padding="10dp"
+            android:textColor="@android:color/white"/>
 
     </RelativeLayout>
 
