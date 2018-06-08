@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".PrivateEvent"
+    >
+
+    <!-- TODO: Update blank fragment layout -->
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:stretchColumns="1">
+
+        <!-- Title -->
+        <TableRow>
+
+            <ImageView
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_orange_dark"
+                app:srcCompat="@drawable/event_title" />
+
+            <EditText
+                android:id="@+id/editText_title_pr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:hint="@string/enterEventTitle"
+                android:inputType="text" />
+        </TableRow>
+
+        <!-- Location -->
+        <TableRow>
+            <ImageView
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_orange_dark"
+                app:srcCompat="@drawable/location" />
+
+            <EditText
+                android:id="@+id/editText_location_pr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:ems="10"
+                android:hint="@string/enterLocation"
+                android:inputType="text" />
+        </TableRow>
+
+        <!-- Invite People -->
+        <TableRow>
+            <ImageView
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_orange_dark"
+                app:srcCompat="@drawable/invite_people"/>
+            <MultiAutoCompleteTextView
+                android:id="@+id/invitePeople_pr"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/invitePeople"/>
+        </TableRow>
+
+        <!-- Invite Group -->
+        <TableRow>
+            <ImageView
+                android:layout_margin="10dp"
+                android:background="@android:color/holo_orange_dark"
+                app:srcCompat="@drawable/invite_group"/>
+            <MultiAutoCompleteTextView
+                android:id="@+id/inviteGroup_pr"
+                android:layout_margin="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="@string/inviteGroup"/>
+        </TableRow>
+
+
+        <TableLayout>
+            <!-- Date -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Start Date:"
+                    android:textSize="15dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="End Date:"
+                    android:textSize="15dp"
+                    />
+            </TableRow>
+            <TableRow>
+
+                <EditText
+                    android:id="@+id/editText_std_pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:ems="7"
+                    android:clickable="true"/>
+                <EditText
+                    android:id="@+id/editText_edd_pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:ems="7"
+                    android:clickable="true"
+                    />
+            </TableRow>
+
+
+            <!-- Time -->
+            <TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Start Time:"
+                    android:textSize="15dp"
+
+
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="End Time:"
+                    android:textSize="15dp"
+                    />
+            </TableRow>
+
+            <TableRow>
+                <EditText
+                    android:id="@+id/editText_stt_pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:ems="5"
+                    android:inputType="text"
+                    android:clickable="true"/>
+
+                <EditText
+                    android:id="@+id/editText_edt_pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:ems="5"
+                    android:inputType="text"
+                    android:clickable="true"/>
+
+            </TableRow>
+        </TableLayout>
+
+        <!-- Picture -->
+        <RelativeLayout>
+
+
+            <Button
+                android:id="@+id/btn_chooseImg_pr"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:padding="10dp"
+                android:background="@drawable/button_active"
+                android:text="Choose Image"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/textImgPath_pr"
+                android:layout_gravity="center_vertical"
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_toRightOf="@id/btn_chooseImg_pr"
+                android:layout_margin="10dp"
+                android:textSize="15dp"
+                />
+
+        </RelativeLayout>
+
+        <!--Description -->
+
+        <TableRow>
+            <TextView
+                android:text="Description:"
+                android:layout_gravity="left"
+                android:layout_span="2"
+                android:layout_margin="10dp"/>
+        </TableRow>
+
+        <TableRow>
+            <EditText
+                android:id="@+id/editText_description_pr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_span="2"
+                android:inputType="textMultiLine" />
+
+        </TableRow>
+
+        <!-- create button -->
+        <TableRow android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/privevent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:layout_span="2"
+                android:background="@drawable/button_active"
+                android:text="Create Event"
+                android:textColor="@android:color/white" />
+        </TableRow>
+
+    </TableLayout>
+
+</ScrollView>

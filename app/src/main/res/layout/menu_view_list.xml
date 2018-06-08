@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/menu_eventFeed"
+            android:title="Event Feed" />
+
+        <item
+            android:id="@+id/menu_notifications"
+            android:title="Notifications" />
+
+        <item
+            android:id="@+id/menu_messages"
+            android:title="Messages"
+            />
+
+        <item
+            android:id="@+id/menu_userGroup"
+            android:title="My Group"
+            />
+        <item
+            android:id="@+id/menu_product"
+            android:title="Products" />
+        <item
+            android:id="@+id/menu_FAQ"
+            android:title="FAQs"/>
+        <item
+            android:id="@+id/menu_signout"
+            android:title="Sign Out" />
+
+    </group>
+
+
+</menu>

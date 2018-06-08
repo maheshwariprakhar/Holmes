@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <ImageView
+        android:layout_margin="20dp"
+        android:id="@+id/imageView_mainPage_icon"
+        style="@android:style/TextAppearance.DeviceDefault.Widget.IconMenu.Item"
+        android:layout_width="wrap_content"
+        android:layout_height="48dp"
+        android:layout_gravity="top|center_horizontal"
+        android:layout_weight="0.2"
+        android:src="@mipmap/ic_launcher_foreground" />
+
+    <TextView
+        android:id="@+id/textView_mainPage_title"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_weight="0.5"
+        android:fontFamily="sans-serif"
+        android:text="@string/app_name"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <TextView
+        android:id="@+id/textView_mainPage_description"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="1"
+        android:fontFamily="sans-serif"
+        android:text="@string/mainPage_desc"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:id="@+id/btn_getStarted"
+        style="@android:style/TextAppearance.DeviceDefault.Large"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="40dp"
+        android:layout_weight="0"
+        android:background="@drawable/button_active"
+        android:text="@string/mainPage_btn_text"
+        android:textColor="@android:color/white" />
+
+
+</LinearLayout>

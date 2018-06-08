@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/pro_detail_img"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp"
+
+            />
+        <TableLayout
+            android:id="@+id/pro_detail_lay"
+            android:layout_below="@id/pro_detail_img"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            >
+            <TableRow>
+                <TextView
+                    android:id="@+id/pro_detail_title_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="right"
+                    android:layout_margin="10dp"
+                    android:text="Name"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/pro_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/pro_detail_owner_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Owner"
+                    android:gravity="right"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/pro_detail_owner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </TableRow>
+            <TableRow>
+                <TextView
+                    android:id="@+id/pro_detail_price_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:gravity="right"
+                    android:text="Price"
+                    android:textStyle="bold"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/pro_detail_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/pro_detail_cat_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Categories"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/pro_detail_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/pro_detail_des_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:text="Description"
+                    android:gravity="right"
+                    android:textSize="15dp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/pro_detail_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp" />
+            </TableRow>
+        </TableLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
+

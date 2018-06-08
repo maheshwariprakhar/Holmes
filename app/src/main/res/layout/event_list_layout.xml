@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="fill_horizontal"
+    android:columnCount="4"
+    android:layout_margin="10dp">
+    <ImageView
+        android:id="@+id/event_list_img"
+        android:layout_column="0"
+        android:layout_rowSpan="2"
+        android:layout_gravity="fill"
+        android:adjustViewBounds="true"
+        android:maxHeight="90dp"
+        android:maxWidth="90dp"
+        android:src="@drawable/avatar"
+        />
+    <RelativeLayout
+        android:layout_column="1"
+        android:layout_columnSpan="2"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_columnWeight="1"
+        android:layout_margin="10dp"
+        >
+
+        <TextView
+
+            android:text="Event Title"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:id="@+id/event_list_title"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            />
+        <TextView
+
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Hosted by"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:id="@+id/event_list_host"
+            android:layout_below="@id/event_list_title"/>
+        <TextView
+
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Time"
+            android:textSize="15dp"
+            android:textStyle="italic"
+            android:id="@+id/event_list_time"
+            android:layout_below="@id/event_list_host"/>
+
+
+    </RelativeLayout>
+
+</GridLayout>

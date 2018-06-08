@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Holmes</string>
+    <string name="APP_LOG_TAG">HOLMES APP LOG</string>
+    <string name="mainPage_desc">See what your community is upto !!</string>
+    <string name="mainPage_btn_text">Get Started !!</string>
+    <string name="enterEmail">Enter Email-Id</string>
+    <string name="enterMobileNo">Enter Mobile Number</string>
+    <string name="enterPassword">Enter Password</string>
+    <string name="forgotPassword">Forgot Your Password</string>
+    <string name="enterFullName">Enter full name</string>
+    <string name="enterMobileNumber">Enter Mobile Number</string>
+    <string name="enterUserName">Enter user name</string>
+    <string name="enterApartmentnumber">Enter Apartment Number</string>
+    <string name="enterEventTitle">Event title</string>
+    <string name="enterLocation">Location</string>
+    <string name="invitePeople">Invite People</string>
+    <string name="inviteGroup">Invite Group</string>
+
+    <string name="enterProductTitle">Product title</string>
+    <string name="enterProductPrice">Price</string>
+    <string name="enterProductCategories">Categories</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>
