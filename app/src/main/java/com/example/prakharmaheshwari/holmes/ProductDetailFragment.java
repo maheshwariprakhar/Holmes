@@ -8,11 +8,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.firebase.ui.storage.images.FirebaseImageLoader;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -30,6 +32,7 @@ public class ProductDetailFragment extends Fragment {
     StorageReference avatars = imagesRef.child("Products");
     private DatabaseReference products;
     private FirebaseDatabase pDatabase;
+    private Button btnSold;
 
     public ProductDetailFragment() {
 
@@ -59,6 +62,7 @@ public class ProductDetailFragment extends Fragment {
         pDatabase = FirebaseDatabase.getInstance();
         products = pDatabase.getReference("Products");
         pCategories = "";
+        btnSold = (Button) rootView.findViewById(R.id.btn_Sold);
 
         Glide.with(getContext())
                 .using(new FirebaseImageLoader())
@@ -74,8 +78,14 @@ public class ProductDetailFragment extends Fragment {
                     pName = dataSnapshot.getValue(String.class);
                 if(dataSnapshot.getKey().equals("price"))
                     pPrice = dataSnapshot.getValue(String.class);
-                if(dataSnapshot.getKey().equals("owner"))
+                if(dataSnapshot.getKey().equals("owner")) {
                     pOwner = dataSnapshot.getValue(String.class);
+                    if(pOwner.equals(FirebaseAuth.getInstance().getCurrentUser().getDisplayName())) {
+                        pOwner = "You";
+                    }
+                    Log.d("hi", pOwner);
+
+                }
                 if(dataSnapshot.getKey().equals("description"))
                     pDescription = dataSnapshot.getValue(String.class);
                 Log.d("products2", Long.toString(dataSnapshot.getChildrenCount()));
@@ -93,6 +103,18 @@ public class ProductDetailFragment extends Fragment {
                 proCategories.setText(pCategories);
                 //p
 
+                if(pOwner!=null && pOwner=="You") {
+                    btnSold.setVisibility(View.VISIBLE);
+                    btnSold.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            products.child(p_key).removeValue();
+                        }
+                    });
+                }
+                else if(pOwner!=null){
+                    btnSold.setVisibility(View.INVISIBLE);
+                }
             }
 
             @Override

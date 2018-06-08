@@ -2,13 +2,27 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ListView
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/event_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:textSize="15dp"
+            android:textStyle="bold|italic"
+            android:textColor="@color/textColor"
+            android:gravity="center"
+            android:text="Upcoming events"/>
+        <ListView
         android:id="@+id/eve_event_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+            android:layout_below="@+id/event_text">
     </ListView>
-
+    </RelativeLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/btn_addNewEvent"
         android:backgroundTint="@color/textColor"
