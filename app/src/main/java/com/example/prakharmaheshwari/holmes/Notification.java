@@ -89,6 +89,7 @@ public class Notification extends Fragment {
         View view = inflater.inflate(R.layout.fragment_notification, container, false);
         ListView notificationlistview = view.findViewById(R.id.notificationlists);
         //query data from sqlite database Notification
+        notificationlist.clear();
 
         Cursor result = sqliteDatabase.rawQuery(QUERY_ALL_NOTIFICATIONS, null);
         while (result.moveToNext()) {
