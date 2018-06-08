@@ -70,6 +70,7 @@ public class EventFeedPage extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_feed_page);
         //getting the user authentication to fetch the details
+        setTitle("Events");
         FirebaseAuth authentication = FirebaseAuth.getInstance();
         user = authentication.getCurrentUser();
         String name = user.getDisplayName();

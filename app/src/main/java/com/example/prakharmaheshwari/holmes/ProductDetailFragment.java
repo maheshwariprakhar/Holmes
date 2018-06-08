@@ -49,6 +49,7 @@ public class ProductDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View rootView =inflater.inflate(R.layout.fragment_products_detail, container, false);
+        getActivity().setTitle("Product Details");
         eventImg = (ImageView) rootView.findViewById(R.id.pro_detail_img);
         proOwner = (TextView) rootView.findViewById(R.id.pro_detail_owner);
         proTitle = (TextView) rootView.findViewById(R.id.pro_detail_title);

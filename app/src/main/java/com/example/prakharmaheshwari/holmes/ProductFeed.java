@@ -53,6 +53,7 @@ public class ProductFeed extends Fragment{
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_products_list, container, false);
+        getActivity().setTitle("Products");
         pDatabase = FirebaseDatabase.getInstance();
         User = FirebaseAuth.getInstance().getCurrentUser();
         products= pDatabase.getReference("Products");
